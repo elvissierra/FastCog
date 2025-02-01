@@ -16,3 +16,19 @@ class UserVerify(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: Annotated[str, MinLen(7)]
+
+class ConfirmForgotPassword(BaseModel):
+    email: EmailStr
+    confirmation_code: Annotated[str, MaxLen(6)]
+    new_password: Annotated[str, MinLen(7)]
+
+class ResetPassword(BaseModel):
+    old_password: Annotated[str, MinLen(7)]
+    new_password: Annotated[str, MinLen(7)]
+    access_token: str
+
+class RefreshToken(BaseModel):
+    refresh_token: str
+
+class AccessToken(BaseModel):
+    access_token: str
